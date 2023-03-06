@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:spacebar/provider/appstate.dart';
 import 'package:spacebar/ui/screens/cart/cart_page.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        body: LoginPage(),
+        body: OnBoardingPage(),
       )
     );
   }
@@ -44,11 +45,13 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _counter = 0;
   int _selectedState = 0;
   final List _selectedPage = [HomePage(), CartPage(), MapPage()];
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle( statusBarColor: Colors.black)
+    );
     return Scaffold(
       body: Center(
         child: _selectedPage[_selectedState],
