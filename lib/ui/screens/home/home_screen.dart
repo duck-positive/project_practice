@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:spacebar/ui/screens/map/map_page.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen ({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   int _selectedState = 0;
 
   @override
@@ -48,7 +49,11 @@ class ProductSection extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return Container(width: 100, height: 10, color: Colors.blue,
+                  return Container(width: 100, height: 10,
+                    child: ListTile(
+                        title: Text("$index"),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage())),
+                    ),
                     margin: EdgeInsets.fromLTRB(0,10,20,0),
                     padding: EdgeInsets.fromLTRB(0,10,20,0),);
                 },

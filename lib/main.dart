@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:spacebar/provider/appstate.dart';
 import 'package:spacebar/ui/screens/cart/cart_page.dart';
-import 'package:spacebar/ui/screens/home/home_page.dart';
+import 'package:spacebar/ui/screens/home/home_screen.dart';
 import 'package:spacebar/ui/screens/onboarding/login_page.dart';
 import 'package:spacebar/ui/screens/onboarding/onboarding_page.dart';
 
@@ -31,7 +32,12 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         body: OnBoardingPage(),
-      )
+      ),
+      routes: {
+        "/onBoarding" : (context) => OnBoardingPage(),
+        "/home" : (context) => HomeScreen(),
+
+      },
     );
   }
 }
@@ -46,7 +52,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedState = 0;
-  final List _selectedPage = [HomePage(), CartPage(), MapPage()];
+  final List _selectedPage = [HomeScreen(), CartPage(), MapPage()];
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -56,7 +62,7 @@ class _MainPageState extends State<MainPage> {
       body: Center(
         child: _selectedPage[_selectedState],
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: CupertinoTabBar(
         currentIndex: _selectedState,
         onTap: (int index){
           setState(() {
